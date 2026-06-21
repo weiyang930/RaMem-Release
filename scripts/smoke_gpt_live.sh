@@ -70,8 +70,8 @@ SUBSET_GT="$TMP_DIR/gt_memory_verification_${GT_STEM}_sample0.json"
 smoke_subset_gt "$DB_PREFIX" 0 "$SUBSET_GT"
 
 EVAL_SCRIPT="cli/ramem_eval.py"
-EVAL_JSON="SSS_results/${EVAL_STEM}_eval_1540_s0.json"
-CONTEXT_JSON="gt_context_data/1540_${EVAL_STEM}_t_contexts_s0.json"
+EVAL_JSON="results/locomo/${EVAL_STEM}_eval_1540_s0.json"
+CONTEXT_JSON="results/locomo_contexts/1540_${EVAL_STEM}_t_contexts_s0.json"
 
 python "$EVAL_SCRIPT" --model gpt --openai-model "$OPENAI_MODEL" --samples 0 --gt-json "$SUBSET_GT" --allow-subset-gt
 python scripts/smoke_live.py validate \

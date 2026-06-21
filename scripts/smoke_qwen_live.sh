@@ -43,8 +43,8 @@ SUBSET_GT="$TMP_DIR/gt_memory_verification_qwen_sample0.json"
 smoke_subset_gt "db/qwen/lancedb_data_frozen_qwen_sample" 0 "$SUBSET_GT"
 
 EVAL_SCRIPT="cli/ramem_eval.py"
-EVAL_JSON="SSS_results/qwen_eval_s0.json"
-CONTEXT_JSON="gt_context_data/1540_qwen_t_contexts_s0.json"
+EVAL_JSON="results/locomo/qwen_eval_s0.json"
+CONTEXT_JSON="results/locomo_contexts/1540_qwen_t_contexts_s0.json"
 
 python "$EVAL_SCRIPT" --model qwen --samples 0 --gt-json "$SUBSET_GT" --allow-subset-gt
 python scripts/smoke_live.py validate \

@@ -86,9 +86,6 @@ models/*/
 
 # Generated evaluation and export artifacts not kept in Git
 results/
-SSS_results/
-gt_context_data/
-*_results/
 *_candidates.json
 *_candidates.md
 longmemeval_s_cleaned.json

@@ -111,5 +111,5 @@ bash "$SCRIPT_DIR/eval_qwen_parallel.sh"
 
 echo ""
 echo "[OK] Completed $QWEN_RUN_SLUG"
-echo "[OK] Eval: $ROOT_DIR/SSS_results/${QWEN_RUN_SLUG}_eval_1540.json"
-echo "[OK] Contexts: $ROOT_DIR/gt_context_data/1540_${QWEN_RUN_SLUG}_t_contexts.json"
+echo "[OK] Eval: $ROOT_DIR/results/locomo/${QWEN_RUN_SLUG}_eval_1540.json"
+echo "[OK] Contexts: $ROOT_DIR/results/locomo_contexts/1540_${QWEN_RUN_SLUG}_t_contexts.json"

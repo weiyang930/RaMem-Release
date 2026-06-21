@@ -20,9 +20,9 @@ from ramem.db_layout import (
 
 
 ROOT = Path(__file__).resolve().parent.parent
-SSS_DIR = ROOT / "SSS_results"
-GT_CONTEXT_DIR = ROOT / "gt_context_data"
-SHARD_DIR = SSS_DIR / "_internal_shards"
+LOCOMO_RESULTS_DIR = ROOT / "results" / "locomo"
+LOCOMO_CONTEXT_DIR = ROOT / "results" / "locomo_contexts"
+SHARD_DIR = LOCOMO_RESULTS_DIR / "_internal_shards"
 
 EMBEDDING_MODEL_ID = "Qwen/Qwen3-Embedding-0.6B"
 MAX_MODEL_LEN = 8192
@@ -92,16 +92,16 @@ def make_gpt_spec(openai_model: str | None = None) -> RunSpec:
         db_dir = GPT_DB_DIR
         active_db = GPT_ACTIVE_DB
         frozen_prefix = GPT_FROZEN_PREFIX
-        gt_json = GT_CONTEXT_DIR / "gt_memory_verification_gpt.json"
+        gt_json = LOCOMO_CONTEXT_DIR / "gt_memory_verification_gpt.json"
         method_eval_stem = "gpt_eval"
-        method_context_out = GT_CONTEXT_DIR / "1540_gpt_t_contexts.json"
+        method_context_out = LOCOMO_CONTEXT_DIR / "1540_gpt_t_contexts.json"
     else:
         db_dir = ROOT / "db" / slug
         active_db = db_dir / "lancedb_data"
         frozen_prefix = f"db/{slug}/lancedb_data_frozen_{slug}_sample"
-        gt_json = GT_CONTEXT_DIR / f"gt_memory_verification_{slug}.json"
+        gt_json = LOCOMO_CONTEXT_DIR / f"gt_memory_verification_{slug}.json"
         method_eval_stem = f"{slug}_eval_1540"
-        method_context_out = GT_CONTEXT_DIR / f"1540_{slug}_t_contexts.json"
+        method_context_out = LOCOMO_CONTEXT_DIR / f"1540_{slug}_t_contexts.json"
 
     return RunSpec(
         key="gpt",
@@ -132,10 +132,10 @@ QWEN_SPEC = RunSpec(
     db_dir=QWEN_DB_DIR,
     active_db=QWEN_ACTIVE_DB,
     frozen_prefix=QWEN_FROZEN_PREFIX,
-    gt_json=GT_CONTEXT_DIR / "gt_memory_verification_qwen.json",
+    gt_json=LOCOMO_CONTEXT_DIR / "gt_memory_verification_qwen.json",
     method_eval_script="cli/ramem_eval.py",
     method_eval_stem="qwen_eval",
-    method_context_out=GT_CONTEXT_DIR / "1540_qwen_t_contexts.json",
+    method_context_out=LOCOMO_CONTEXT_DIR / "1540_qwen_t_contexts.json",
 )
 
 
@@ -190,10 +190,10 @@ def make_qwen_spec() -> RunSpec:
         db_dir=db_dir,
         active_db=db_dir / "lancedb_data",
         frozen_prefix=f"db/{slug}/lancedb_data_frozen_{slug}_sample",
-        gt_json=GT_CONTEXT_DIR / f"gt_memory_verification_{slug}.json",
+        gt_json=LOCOMO_CONTEXT_DIR / f"gt_memory_verification_{slug}.json",
         method_eval_script=QWEN_SPEC.method_eval_script,
         method_eval_stem=f"{slug}_eval_1540",
-        method_context_out=GT_CONTEXT_DIR / f"1540_{slug}_t_contexts.json",
+        method_context_out=LOCOMO_CONTEXT_DIR / f"1540_{slug}_t_contexts.json",
     )
 
 LLAMA31_8B_SPEC = RunSpec(
@@ -206,10 +206,10 @@ LLAMA31_8B_SPEC = RunSpec(
     db_dir=LLAMA31_8B_DB_DIR,
     active_db=LLAMA31_8B_ACTIVE_DB,
     frozen_prefix=LLAMA31_8B_FROZEN_PREFIX,
-    gt_json=GT_CONTEXT_DIR / "gt_memory_verification_llama31_8b.json",
+    gt_json=LOCOMO_CONTEXT_DIR / "gt_memory_verification_llama31_8b.json",
     method_eval_script="cli/ramem_eval.py",
     method_eval_stem="llama31_8b_eval",
-    method_context_out=GT_CONTEXT_DIR / "1540_llama31_8b_t_contexts.json",
+    method_context_out=LOCOMO_CONTEXT_DIR / "1540_llama31_8b_t_contexts.json",
 )
 
 LLAMA32_3B_SPEC = RunSpec(
@@ -222,10 +222,10 @@ LLAMA32_3B_SPEC = RunSpec(
     db_dir=LLAMA32_3B_DB_DIR,
     active_db=LLAMA32_3B_ACTIVE_DB,
     frozen_prefix=LLAMA32_3B_FROZEN_PREFIX,
-    gt_json=GT_CONTEXT_DIR / "gt_memory_verification_llama32_3b.json",
+    gt_json=LOCOMO_CONTEXT_DIR / "gt_memory_verification_llama32_3b.json",
     method_eval_script="cli/ramem_eval.py",
     method_eval_stem="llama32_3b_eval",
-    method_context_out=GT_CONTEXT_DIR / "1540_llama32_3b_t_contexts.json",
+    method_context_out=LOCOMO_CONTEXT_DIR / "1540_llama32_3b_t_contexts.json",
 )
 
 SPECS_BY_KEY: dict[str, RunSpec] = {

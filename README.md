@@ -95,7 +95,7 @@ Experiments on long-term memory benchmarks show that RaMem consistently improves
 └── utils/                  # LLM and embedding clients
 ```
 
-Generated outputs are intentionally excluded from the repository. Local runs will create directories such as `db/`, `SSS_results/`, `gt_context_data/`, and `longmemeval_s_results/`.
+Generated outputs are intentionally excluded from the repository. Local runs will create directories such as `db/`, `results/locomo/`, `results/locomo_contexts/`, and `results/longmemeval_s/`.
 
 ---
 
@@ -306,8 +306,8 @@ llama32_3b
 LoCoMo outputs are written to:
 
 ```text
-SSS_results/
-gt_context_data/
+results/locomo/
+results/locomo_contexts/
 db/
 ```
 
@@ -354,7 +354,7 @@ export OPENAI_API_KEY="your-api-key"
 
 python cli/run_longmemeval_s.py \
   --dataset longmemeval_s_cleaned.json \
-  --output_dir longmemeval_s_results/ramem_pilot \
+  --output_dir results/longmemeval_s/ramem_pilot \
   --generator_model gpt-4.1-mini \
   --judge_model gpt-4.1-mini \
   --judge_protocol official \
@@ -368,7 +368,7 @@ Run the full LongMemEval-S evaluation:
 ```bash
 python cli/run_longmemeval_s.py \
   --dataset longmemeval_s_cleaned.json \
-  --output_dir longmemeval_s_results/ramem_gpt41mini \
+  --output_dir results/longmemeval_s/ramem_gpt41mini \
   --generator_model gpt-4.1-mini \
   --judge_model gpt-4.1-mini \
   --judge_protocol official \

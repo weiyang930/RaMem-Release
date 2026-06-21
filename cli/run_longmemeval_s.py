@@ -112,7 +112,7 @@ def official_judge_prompt(task: str, question: str, answer: str, response: str, 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Run LongMemEval-S with RaMem.")
     parser.add_argument("--dataset", default="longmemeval_s_cleaned.json")
-    parser.add_argument("--output_dir", default="longmemeval_s_results")
+    parser.add_argument("--output_dir", default="results/longmemeval_s")
     parser.add_argument("--limit", type=int, default=None, help="Limit examples for smoke/pilot runs.")
     parser.add_argument("--pilot", action="store_true", help="Run pilot mode and save pilot_results.json.")
     parser.add_argument("--pilot_n", type=int, default=5)

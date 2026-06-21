@@ -37,7 +37,7 @@ sys.path.insert(0, str(ROOT))
 from ramem.db_layout import GPT_FROZEN_PREFIX
 
 DEFAULT_DATASET = ROOT / "locomo10.json"
-DEFAULT_OUT = ROOT / "gt_context_data" / "gt_memory_verification.json"
+DEFAULT_OUT = ROOT / "results/locomo_contexts" / "gt_memory_verification.json"
 DEFAULT_DB_PREFIX = GPT_FROZEN_PREFIX
 DEFAULT_TABLE_NAME = "memory_entries"
 

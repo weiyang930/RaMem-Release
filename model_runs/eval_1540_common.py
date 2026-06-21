@@ -29,7 +29,7 @@ from model_runs.run_specs import (
     EXPECTED_QUESTION_COUNT,
     RunSpec,
     SHARD_DIR,
-    SSS_DIR,
+    LOCOMO_RESULTS_DIR,
 )
 
 
@@ -143,7 +143,7 @@ def _selection_suffix(sample_indices: list[int], categories: list[int], spec: Ru
 
 def _output_paths(spec: RunSpec, mode: EvalMode, sample_indices: list[int], categories: list[int]) -> tuple[Path, Path]:
     suffix = _selection_suffix(sample_indices, categories, spec)
-    eval_path = SSS_DIR / f"{_default_output_stem(spec, mode)}{suffix}.json"
+    eval_path = LOCOMO_RESULTS_DIR / f"{_default_output_stem(spec, mode)}{suffix}.json"
 
     default_context = _default_context_out(spec, mode)
     context_filename = f"{default_context.stem}{suffix}{default_context.suffix}"
@@ -1036,7 +1036,7 @@ def _finalize_from_shards(
         available = sorted(set(available))
         missing = sorted(set(missing))
         if output_stem:
-            out_file = SSS_DIR / f"{output_stem}.json"
+            out_file = LOCOMO_RESULTS_DIR / f"{output_stem}.json"
             context_out = context_out_override or _output_paths(spec, mode, spec.expected_samples, categories)[1]
         else:
             out_file, context_out = _output_paths(spec, mode, spec.expected_samples, categories)
@@ -1100,7 +1100,7 @@ def eval_main(spec: RunSpec, mode: EvalMode, argv: list[str] | None = None) -> N
     if not DATASET_PATH.exists():
         raise SystemExit(f"Dataset not found: {DATASET_PATH}")
 
-    SSS_DIR.mkdir(exist_ok=True)
+    LOCOMO_RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     SHARD_DIR.mkdir(parents=True, exist_ok=True)
     requested_gt_path = Path(args.gt_json).expanduser()
     if args.allow_subset_gt and requested_gt_path.exists():
@@ -1166,7 +1166,7 @@ def eval_main(spec: RunSpec, mode: EvalMode, argv: list[str] | None = None) -> N
     out_file, context_out = _output_paths(spec, mode, sample_indices, categories)
     if args.output_stem:
         suffix = _selection_suffix(sample_indices, categories, spec)
-        out_file = SSS_DIR / f"{args.output_stem}{suffix}.json"
+        out_file = LOCOMO_RESULTS_DIR / f"{args.output_stem}{suffix}.json"
     if args.context_out:
         context_out = Path(args.context_out).expanduser()
         if not context_out.is_absolute():

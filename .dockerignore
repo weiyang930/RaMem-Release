@@ -7,12 +7,10 @@ __pycache__
 venv
 .env
 
-# Secrets (use env vars in container)
-config.py
-
 # Runtime data (use volume mount)
 data/
 lancedb_data/
+results/
 
 # Docs and non-runtime
 *.md
